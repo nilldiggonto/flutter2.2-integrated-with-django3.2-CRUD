@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/guitar/add_data.dart';
 import 'package:todo_app/guitar/global_state.dart';
 import 'package:todo_app/homescreen.dart';
 
@@ -14,7 +15,12 @@ class MyApp extends StatelessWidget {
       create: (context) => GuitarState(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        // home: HomeScreen(),
+        routes: {
+          '/': (context) => HomeScreen(),
+          // '/add': (context) => AddData(),
+          AddData.routerName: (context) => AddData(),
+        },
       ),
     );
   }
