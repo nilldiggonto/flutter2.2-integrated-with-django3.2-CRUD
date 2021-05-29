@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/guitar/global_state.dart';
 
 class AddData extends StatefulWidget {
-  static const routerName = '/add-screens';
+  static const routerName = '/add';
   @override
   _AddDataState createState() => _AddDataState();
 }
