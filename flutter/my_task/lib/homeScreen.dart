@@ -58,7 +58,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     Spacer(),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                AddEditScreen(mystaskData[index].id),
+                          ),
+                        );
+                        // .pushNamed(AddEditScreen.routeName,arguments: );
+                      },
                       icon: Icon(Icons.edit),
                       color: Colors.green,
                     ),

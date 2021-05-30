@@ -14,13 +14,32 @@ class AddEditScreen extends StatefulWidget {
 class _AddEditScreenState extends State<AddEditScreen> {
   final _textController = TextEditingController();
 
+  @override
+  void didChangeDependencies() {
+    if (widget.id != null) {
+      MyTask oldMytask =
+          Provider.of<GState>(context, listen: false).singleTask(widget.id!);
+      _textController.text = oldMytask.title;
+    }
+    super.didChangeDependencies();
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+
   void _addTask() {
     if (_textController.text.length <= 6) {
       return;
     }
-    print(_textController.text);
-    Provider.of<GState>(context, listen: false)
-        .addNewTask(_textController.text);
+
+    if (widget.id != null) {
+      Provider.of<GState>(context, listen: false)
+          .updateTask(widget.id!, _textController.text);
+    } else {
+      print(_textController.text);
+      Provider.of<GState>(context, listen: false)
+          .addNewTask(_textController.text);
+    }
+
     Navigator.of(context).pop();
   }
 

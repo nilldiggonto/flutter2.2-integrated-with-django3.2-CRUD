@@ -78,12 +78,35 @@ class GState with ChangeNotifier {
     String durl = '$url$id/';
     try {
       print(durl);
-      final response = await http.delete(Uri.parse(durl));
+      http.Response response = await http.delete(Uri.parse(durl));
       if (response.statusCode > 400) {
         print('data not deleted');
       } else {
         print('delete deleted');
       }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  // Retrive view
+  MyTask singleTask(int id) {
+    return _mytasks.firstWhere((element) => element.id == id);
+  }
+
+  //update
+  Future<void> updateTask(int id, String title) async {
+    String durl = '$url$id/';
+    try {
+      http.Response response = await http.put(
+        Uri.parse(durl),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: json.encode({"title": title}),
+      );
+      print(response.body);
+      print('data updated');
     } catch (e) {
       print(e);
     }

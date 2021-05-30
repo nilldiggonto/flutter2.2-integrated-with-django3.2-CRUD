@@ -7,7 +7,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 # Create your views here.
 
 class MyTaskView(ListCreateAPIView):
-    queryset = MyTask.objects.all()
+    queryset = MyTask.objects.all().order_by('-id')
     serializer_class =MyTaskSerializers
 
 class MyTaskViewDetail(RetrieveUpdateDestroyAPIView):
