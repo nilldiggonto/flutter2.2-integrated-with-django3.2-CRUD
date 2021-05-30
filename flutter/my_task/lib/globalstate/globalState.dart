@@ -50,8 +50,42 @@ class GState with ChangeNotifier {
     // print('naything');
   }
 
+  ///GETTING THE DATA
   List<MyTask> get mytasks {
     return [..._mytasks];
     // return ;
+  }
+
+  // POSTING THE DATA TO SERVER
+
+  Future<void> addNewTask(String newtitle) async {
+    try {
+      http.Response response = await http.post(
+        Uri.parse(url),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: json.encode({"title": newtitle}),
+      );
+      print(response.body);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  // DELETING DATA FROM SERVER
+  Future<void> deleteTask(int id) async {
+    String durl = '$url$id/';
+    try {
+      print(durl);
+      final response = await http.delete(Uri.parse(durl));
+      if (response.statusCode > 400) {
+        print('data not deleted');
+      } else {
+        print('delete deleted');
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 }

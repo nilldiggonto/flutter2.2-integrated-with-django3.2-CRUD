@@ -55,6 +55,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(width: 12),
                     // Text('print here too'),
                     Text(mystaskData[index].title),
+
+                    Spacer(),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.edit),
+                      color: Colors.green,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Provider.of<GState>(context, listen: false)
+                            .deleteTask(mystaskData[index].id);
+                      },
+                      icon: Icon(Icons.delete),
+                      color: Colors.red,
+                    )
                   ])),
             );
           },
